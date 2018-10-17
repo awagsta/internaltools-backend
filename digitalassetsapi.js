@@ -9,6 +9,13 @@
  * @param {external:ExpressApplicationObject}
  * service 
  */
+
+ var assets = require("./databaseTables/assets.js");
+ var pillars = require("./databaseTables/pillars.js");
+ var industries = require("./databaseTables/industries.js");
+ var hubsters = require("./databaseTables/hubsters.js");
+ var cloudServices = require("./databaseTables/cloud-services.js");
+ 
 module.exports = function(service) {
 
 
@@ -20,220 +27,75 @@ module.exports = function(service) {
 	/**
 	 * Insert an asset into the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/assets', function(req,res) {
-		var rowData = req.body;
-		req.oracleMobile.database.insert('Assets', rowData).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.post('/mobile/custom/DigitalAssetsAPI/assets', assets.post(req,res));
 
 	/**
 	 * Get all assets from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/assets', function(req,res) {
-		req.oracleMobile.database.getAll('Assets').then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/assets', assets.getAll(req,res));
 
 	/**
 	 * Get an asset by id from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/assets/:id', function(req,res){
-		var id = req.params.id;
-		req.oracleMobile.database.get('Assets', id).then(
-			function(req, res){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/assets/:id', assets.getId(req, res));
 
 	/**
 	 * Insert a combination of pillars into the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/pillars', function(req,res) {
-		var rowData = req.body;
-		req.oracleMobile.database.insert('Pillars', rowData).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.post('/mobile/custom/DigitalAssetsAPI/pillars', pillars.Post(req, res));
 
 	/**
 	 * Get all pillar types from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/pillars', function(req,res) {
-		req.oracleMobile.database.getAll('Pillars').then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/pillars', pillars.getAll(req, res));
 
 	/**
 	 * Get a pillar by id from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/pillars/:id', function(req,res){
-		var id = req.params.id;
-		req.oracleMobile.database.get('Pillars', id).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/pillars/:id', pillars.getId(req, res));
 
 	/**
 	 * Insert a combination of industries into the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/industries', function(req,res) {
-		var rowData = req.body;
-		req.oracleMobile.database.insert('Industries', rowData).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.post('/mobile/custom/DigitalAssetsAPI/industries', industries.post(req, res));
 
 	/**
 	 * Get all industry types from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/industries', function(req,res) {
-		req.oracleMobile.database.getAll('Industries').then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/industries', industries.getAll(req, res));
 
 	/**
 	 * Get industry by id from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/industries/:id', function(req,res){
-		var id = req.params.id;
-		req.oracleMobile.database.get('Industries', id).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/industries/:id', industries.getId(res, req));
 
 	/**
 	 * Insert a new combination of hubsters into the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/hubsters', function(req,res) {
-		var rowData = req.body;
-		req.oracleMobile.database.insert('Hubsters', rowData).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.post('/mobile/custom/DigitalAssetsAPI/hubsters', hubsters.post(req,res));
 
 	/**
 	 * Get all hubster names from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/hubsters', function(req,res) {
-		req.oracleMobile.database.getAll('Hubsters', {fields: 'name'}).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/hubsters', hubsters.getAll(req, res));
 
 	/**
 	 * Get name of a hubster from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/hubsters/:id', function(req, res){
-		var id = req.params.id;
-		req.oracleMobile.database.get('Hubsters', id).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/hubsters/:id', hubsters.getId(req, res));
 
 	/**
 	 * Create new combination of cloud services in the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/cloud-services', function(req,res) {
-		var rowData = req.body;
-		req.oracleMobile.database.insert('Cloud-services', rowData).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.post('/mobile/custom/DigitalAssetsAPI/cloud-services', cloudServices.post(req, res));
 
 	/**
 	 * Get names of all cloud services from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services', function(req,res) {
-		req.oracleMobile.database.getAll('Cloud-services', {fields: 'name'}).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services', cloudServices.getAll(req, res));
 
 	/**
 	 * Get cloud service by id from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services/:id', function(req,res){
-		var id = req.params.id;
-		req.oracleMobile.database.get('Cloud-services', id).then(
-			function(result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function(error){
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
+	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services/:id', cloudServices.getId(req, res));
 };
