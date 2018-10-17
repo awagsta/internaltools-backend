@@ -37,10 +37,25 @@ module.exports = function(service) {
 	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/assets', function(req,res) {
 		req.oracleMobile.database.getAll('Assets').then(
-			function (result){
+			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
-			function (error) {
+			function(error) {
+				res.status(error.statusCode).send(error.error);
+			}
+		);
+	});
+
+	/**
+	 * Get an asset by id from the database.
+	 */
+	service.get('/mobile/custom/DigitalAssetsAPI/assets/:id', function(req,res){
+		var id = req.params.id;
+		req.oracleMobile.database.get('Assets', id).then(
+			function(req, res){
+				res.status(result.statusCode).send(result.result);
+			},
+			function(error){
 				res.status(error.statusCode).send(error.error);
 			}
 		);
@@ -66,10 +81,25 @@ module.exports = function(service) {
 	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/pillars', function(req,res) {
 		req.oracleMobile.database.getAll('Pillars').then(
-			function (result){
+			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
-			function (error) {
+			function(error) {
+				res.status(error.statusCode).send(error.error);
+			}
+		);
+	});
+
+	/**
+	 * Get a pillar by id from the database.
+	 */
+	service.get('/mobile/custom/DigitalAssetsAPI/pillars/:id', function(req,res){
+		var id = req.params.id;
+		req.oracleMobile.database.get('Pillars', id).then(
+			function(result){
+				res.status(result.statusCode).send(result.result);
+			},
+			function(error){
 				res.status(error.statusCode).send(error.error);
 			}
 		);
@@ -95,10 +125,25 @@ module.exports = function(service) {
 	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/industries', function(req,res) {
 		req.oracleMobile.database.getAll('Industries').then(
-			function (result){
+			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
-			function (error) {
+			function(error) {
+				res.status(error.statusCode).send(error.error);
+			}
+		);
+	});
+
+	/**
+	 * Get industry by id from the database.
+	 */
+	service.get('/mobile/custom/DigitalAssetsAPI/industries/:id', function(req,res){
+		var id = req.params.id;
+		req.oracleMobile.database.get('Industries', id).then(
+			function(result){
+				res.status(result.statusCode).send(result.result);
+			},
+			function(error){
 				res.status(error.statusCode).send(error.error);
 			}
 		);
@@ -124,10 +169,25 @@ module.exports = function(service) {
 	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/hubsters', function(req,res) {
 		req.oracleMobile.database.getAll('Hubsters', {fields: 'name'}).then(
-			function (result){
+			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
-			function (error) {
+			function(error) {
+				res.status(error.statusCode).send(error.error);
+			}
+		);
+	});
+
+	/**
+	 * Get name of a hubster from the database.
+	 */
+	service.get('/mobile/custom/DigitalAssetsAPI/hubsters/:id', function(req, res){
+		var id = req.params.id;
+		req.oracleMobile.database.get('Hubsters', id).then(
+			function(result){
+				res.status(result.statusCode).send(result.result);
+			},
+			function(error){
 				res.status(error.statusCode).send(error.error);
 			}
 		);
@@ -153,21 +213,21 @@ module.exports = function(service) {
 	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services', function(req,res) {
 		req.oracleMobile.database.getAll('Cloud-services', {fields: 'name'}).then(
-			function (result){
+			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
-			function (error) {
+			function(error) {
 				res.status(error.statusCode).send(error.error);
 			}
 		);
 	});
 
 	/**
-	 * Get name of a hubster from the database.
+	 * Get cloud service by id from the database.
 	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/hubsters/:id', function(req, res){
+	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services/:id', function(req,res){
 		var id = req.params.id;
-		req.oracleMobile.database.get('Hubsters', id).then(
+		req.oracleMobile.database.get('Cloud-services', id).then(
 			function(result){
 				res.status(result.statusCode).send(result.result);
 			},
@@ -176,20 +236,4 @@ module.exports = function(service) {
 			}
 		);
 	});
-
-	/**
-	 * Get an asset from the database.
-	 */
-	service.get('/mobile/custom/DigitalAssetsAPI/assets/:id', function(req,res) {
-		var id = req.params.id;
-		req.oracleMobile.database.get('Assets', id).then(
-			function (result){
-				res.status(result.statusCode).send(result.result);
-			},
-			function (error) {
-				res.status(error.statusCode).send(error.error);
-			}
-		);
-	});
-
 };
