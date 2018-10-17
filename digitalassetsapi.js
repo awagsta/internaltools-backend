@@ -17,6 +17,9 @@ module.exports = function(service) {
 	 */
 
 
+	/**
+	 * Insert an asset into the database.
+	 */
 	service.post('/mobile/custom/DigitalAssetsAPI/assets', function(req,res) {
 		var rowData = req.body;
 		req.oracleMobile.database.insert('Assets', rowData).then(
@@ -29,6 +32,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get all assets from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/assets', function(req,res) {
 		req.oracleMobile.database.getAll('Assets').then(
 			function (result){
@@ -40,6 +46,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Insert a combination of pillars into the database.
+	 */
 	service.post('/mobile/custom/DigitalAssetsAPI/pillars', function(req,res) {
 		var rowData = req.body;
 		req.oracleMobile.database.insert('Pillars', rowData).then(
@@ -52,6 +61,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get all pillar types from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/pillars', function(req,res) {
 		req.oracleMobile.database.getAll('Pillars').then(
 			function (result){
@@ -63,6 +75,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Insert a combination of industries into the database.
+	 */
 	service.post('/mobile/custom/DigitalAssetsAPI/industries', function(req,res) {
 		var rowData = req.body;
 		req.oracleMobile.database.insert('Industries', rowData).then(
@@ -75,6 +90,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get all industry types from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/industries', function(req,res) {
 		req.oracleMobile.database.getAll('Industries').then(
 			function (result){
@@ -86,6 +104,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Insert a new combination of hubsters into the database.
+	 */
 	service.post('/mobile/custom/DigitalAssetsAPI/hubsters', function(req,res) {
 		var rowData = req.body;
 		req.oracleMobile.database.insert('Hubsters', rowData).then(
@@ -98,6 +119,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get all hubster names from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/hubsters', function(req,res) {
 		req.oracleMobile.database.getAll('Hubsters', {fields: 'name'}).then(
 			function (result){
@@ -109,6 +133,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Create new combination of cloud services in the database.
+	 */
 	service.post('/mobile/custom/DigitalAssetsAPI/cloud-services', function(req,res) {
 		var rowData = req.body;
 		req.oracleMobile.database.insert('Cloud-services', rowData).then(
@@ -121,6 +148,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get names of all cloud services from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/cloud-services', function(req,res) {
 		req.oracleMobile.database.getAll('Cloud-services', {fields: 'name'}).then(
 			function (result){
@@ -132,6 +162,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get name of a hubster from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/hubsters/:id', function(req, res){
 		var id = req.params.id;
 		req.oracleMobile.database.get('Hubsters', id).then(
@@ -144,6 +177,9 @@ module.exports = function(service) {
 		);
 	});
 
+	/**
+	 * Get an asset from the database.
+	 */
 	service.get('/mobile/custom/DigitalAssetsAPI/assets/:id', function(req,res) {
 		var id = req.params.id;
 		req.oracleMobile.database.get('Assets', id).then(
