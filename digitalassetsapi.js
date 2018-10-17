@@ -15,7 +15,7 @@
  var industries = require("./databaseTables/industries.js");
  var hubsters = require("./databaseTables/hubsters.js");
  var cloudServices = require("./databaseTables/cloud-services.js");
- 
+
 module.exports = function(service) {
 
 
@@ -42,7 +42,7 @@ module.exports = function(service) {
 	/**
 	 * Insert a combination of pillars into the database.
 	 */
-	service.post('/mobile/custom/DigitalAssetsAPI/pillars', pillars.Post(req, res));
+	service.post('/mobile/custom/DigitalAssetsAPI/pillars', pillars.post(req, res));
 
 	/**
 	 * Get all pillar types from the database.
